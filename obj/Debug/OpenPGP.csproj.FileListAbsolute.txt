@@ -1,9 +1,0 @@
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\bin\Debug\OpenPGP.exe.config
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\bin\Debug\OpenPGP.exe
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\bin\Debug\OpenPGP.pdb
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\bin\Debug\BouncyCastle.CryptoExt.dll
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\bin\Debug\DidiSoft.Pgp.dll
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\bin\Debug\DidiSoft.Pgp.xml
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\obj\Debug\OpenPGP.csprojResolveAssemblyReference.cache
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\obj\Debug\OpenPGP.exe
-c:\users\daharewa\documents\visual studio 2013\Projects\OpenPGP\OpenPGP\obj\Debug\OpenPGP.pdb
