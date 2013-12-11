@@ -18,7 +18,7 @@ namespace SimplePGP
         {
             InitializeComponent();
             Outlook.Accounts accounts = Globals.ThisAddIn.Application.Session.Accounts;
-            List<String> emails = new List<string>();
+            List<String> emails = new List<String>();
             foreach ( Outlook.Account current in accounts)
             {
                 System.Diagnostics.Debug.WriteLine(current.DisplayName);

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DidiSoft.Pgp;
 
-namespace OpenPGP
+namespace SimplePGP
 {
     class Test
     {

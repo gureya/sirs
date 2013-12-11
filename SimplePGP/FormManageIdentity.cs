@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
+using DidiSoft.Pgp;
+using System.Text.RegularExpressions;
 
 namespace SimplePGP
 {
@@ -18,6 +20,40 @@ namespace SimplePGP
         {
             InitializeComponent();
             this.Text = this.Text.Replace("%S%", who);
+            KeyPairInformation[] keys = Globals.ThisAddIn.keyStore.GetKeys();
+            foreach(KeyPairInformation key in keys)
+            {
+   
+                if ( who.Equals("My") && key.HasPrivateKey)
+                {
+                  
+                        String userID = key.UserId;
+                        String[] infos = Regex.Replace(userID, "<>", "").Split(' ');
+
+                        System.Diagnostics.Debug.WriteLine(infos[0]);
+                        System.Diagnostics.Debug.WriteLine(infos[1]);
+                        ListViewItem item = new ListViewItem(infos);
+                        this.listViewIdentities.Items.Add(item);
+                    
+                }
+                else if(who.Equals("Others'") && !key.HasPrivateKey)
+                {
+
+                        String userID = key.UserId;
+                        String[] infos = Regex.Replace(userID, "<>", "").Split(' ');
+
+                        System.Diagnostics.Debug.WriteLine(infos[0]);
+                        System.Diagnostics.Debug.WriteLine(infos[1]);
+                        ListViewItem item = new ListViewItem(infos);
+                        this.listViewIdentities.Items.Add(item);
+                    
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("You shouldn't see me: FormManageIdentity");
+                }
+            }
+            
            
         }
 

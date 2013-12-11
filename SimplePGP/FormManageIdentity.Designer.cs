@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxIdentities = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewIdentities = new System.Windows.Forms.ListView();
             this.panelAll = new System.Windows.Forms.Panel();
             this.buttonExport = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
@@ -37,6 +37,8 @@
             this.buttonImport = new System.Windows.Forms.Button();
             this.importFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EmailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxIdentities.SuspendLayout();
             this.panelAll.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +48,7 @@
             this.groupBoxIdentities.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxIdentities.Controls.Add(this.listView1);
+            this.groupBoxIdentities.Controls.Add(this.listViewIdentities);
             this.groupBoxIdentities.Location = new System.Drawing.Point(3, 3);
             this.groupBoxIdentities.Name = "groupBoxIdentities";
             this.groupBoxIdentities.Size = new System.Drawing.Size(583, 399);
@@ -54,14 +56,19 @@
             this.groupBoxIdentities.TabStop = false;
             this.groupBoxIdentities.Text = "Identities";
             // 
-            // listView1
+            // listViewIdentities
             // 
-            this.listView1.Location = new System.Drawing.Point(7, 21);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(570, 372);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
+            this.listViewIdentities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.NameColumn,
+            this.EmailColumn});
+            this.listViewIdentities.FullRowSelect = true;
+            this.listViewIdentities.GridLines = true;
+            this.listViewIdentities.Location = new System.Drawing.Point(7, 21);
+            this.listViewIdentities.Name = "listViewIdentities";
+            this.listViewIdentities.Size = new System.Drawing.Size(570, 372);
+            this.listViewIdentities.TabIndex = 0;
+            this.listViewIdentities.UseCompatibleStateImageBehavior = false;
+            this.listViewIdentities.View = System.Windows.Forms.View.Details;
             // 
             // panelAll
             // 
@@ -126,6 +133,16 @@
             this.saveFileDialog.DefaultExt = "pgp";
             this.saveFileDialog.Title = "Export...";
             // 
+            // NameColumn
+            // 
+            this.NameColumn.Text = "Name";
+            this.NameColumn.Width = 273;
+            // 
+            // EmailColumn
+            // 
+            this.EmailColumn.Text = "Email";
+            this.EmailColumn.Width = 294;
+            // 
             // FormManageIdentity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -148,11 +165,13 @@
         private System.Windows.Forms.Panel panelAll;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonImport;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewIdentities;
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.OpenFileDialog importFileDialog;
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ColumnHeader NameColumn;
+        private System.Windows.Forms.ColumnHeader EmailColumn;
 
 
     }
