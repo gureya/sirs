@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManageUI", "ManageUI\Manage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPGP", "sirs\OpenPGP.csproj", "{FA493D43-810E-4C3C-B0D0-DEB8FAE9AB3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateNewUI", "CreateNewUI\CreateNewUI.csproj", "{1FA57D52-EA3E-4EC9-8ED6-FFE430490F36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FA493D43-810E-4C3C-B0D0-DEB8FAE9AB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA493D43-810E-4C3C-B0D0-DEB8FAE9AB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA493D43-810E-4C3C-B0D0-DEB8FAE9AB3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA57D52-EA3E-4EC9-8ED6-FFE430490F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA57D52-EA3E-4EC9-8ED6-FFE430490F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA57D52-EA3E-4EC9-8ED6-FFE430490F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA57D52-EA3E-4EC9-8ED6-FFE430490F36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

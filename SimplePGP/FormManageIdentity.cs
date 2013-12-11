@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using Office = Microsoft.Office.Core;
 
 namespace SimplePGP
 {
@@ -16,6 +18,7 @@ namespace SimplePGP
         {
             InitializeComponent();
             this.Text = this.Text.Replace("%S%", who);
+           
         }
 
         private void buttonImport_Click(object sender, EventArgs e)
@@ -28,6 +31,12 @@ namespace SimplePGP
         {
             saveFileDialog.ShowDialog();
             // TODO export to file default extension is pgp use .Open()
+        }
+
+        private void buttonCreate_Click(object sender, EventArgs e)
+        {
+            FormCreateNew createNew = new FormCreateNew();
+            createNew.Show();
         }
     }
 }

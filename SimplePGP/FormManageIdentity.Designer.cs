@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBoxIdentities = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.panelAll = new System.Windows.Forms.Panel();
+            this.buttonExport = new System.Windows.Forms.Button();
+            this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonImport = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.buttonCreate = new System.Windows.Forms.Button();
             this.importFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.buttonExport = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.groupBoxIdentities.SuspendLayout();
             this.panelAll.SuspendLayout();
@@ -54,6 +54,15 @@
             this.groupBoxIdentities.TabStop = false;
             this.groupBoxIdentities.Text = "Identities";
             // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(7, 21);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(570, 372);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            // 
             // panelAll
             // 
             this.panelAll.Controls.Add(this.buttonExport);
@@ -65,6 +74,26 @@
             this.panelAll.Name = "panelAll";
             this.panelAll.Size = new System.Drawing.Size(757, 528);
             this.panelAll.TabIndex = 4;
+            // 
+            // buttonExport
+            // 
+            this.buttonExport.Location = new System.Drawing.Point(593, 62);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(160, 40);
+            this.buttonExport.TabIndex = 7;
+            this.buttonExport.Text = "Export...";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            // 
+            // buttonCreate
+            // 
+            this.buttonCreate.Location = new System.Drawing.Point(593, 154);
+            this.buttonCreate.Name = "buttonCreate";
+            this.buttonCreate.Size = new System.Drawing.Size(160, 43);
+            this.buttonCreate.TabIndex = 6;
+            this.buttonCreate.Text = "Create New...";
+            this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // buttonRemove
             // 
@@ -85,40 +114,12 @@
             this.buttonImport.UseVisualStyleBackColor = true;
             this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
             // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(7, 21);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(570, 372);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
-            // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Location = new System.Drawing.Point(593, 154);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(160, 43);
-            this.buttonCreate.TabIndex = 6;
-            this.buttonCreate.Text = "Create New...";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            // 
             // importFileDialog
             // 
             this.importFileDialog.FileName = "importFileDialog";
             this.importFileDialog.Filter = "Identities (*.pgp;*.gpg;*.asc)|*.pgp;*.gpg;*.asc|All Files (*.*)|*.*";
             this.importFileDialog.FilterIndex = 0;
             this.importFileDialog.Title = "Import...";
-            // 
-            // buttonExport
-            // 
-            this.buttonExport.Location = new System.Drawing.Point(593, 62);
-            this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(160, 40);
-            this.buttonExport.TabIndex = 7;
-            this.buttonExport.Text = "Export...";
-            this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // saveFileDialog
             // 
