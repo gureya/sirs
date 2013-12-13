@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
+using System.Windows.Forms;
+using DidiSoft.Pgp;
+using DidiSoft.Pgp.Exceptions;
 
 namespace SimplePGP
 {
@@ -10,36 +14,72 @@ namespace SimplePGP
     {
         private void MainRibbon_Load(object sender, RibbonUIEventArgs e)
         {
-            this.checkBoxSign.Checked = Config.SignMessages;
-            this.checkBoxEncrypt.Checked = Config.EncryptMessages;
+            this.checkBoxSign.Checked = Globals.ThisAddIn.SignMessages;
+            this.checkBoxEncrypt.Checked = Globals.ThisAddIn.EncryptMessages;
         }
 
         private void buttonConfigureMe_Click(object sender, RibbonControlEventArgs e)
         {
+            openStore();
+          
             new FormManageIdentity("My").Show();
+            
         }
 
         private void buttonConfigureOthers_Click(object sender, RibbonControlEventArgs e)
         {
+            openStore();
             new FormManageIdentity("Others'").Show();
         }
 
-        private void checkBox1_(object sender, RibbonControlEventArgs e)
+        public static void openStore()
         {
+            if (Globals.ThisAddIn.keyStore != null) return;
+            String fullPath = Path.GetFullPath(@"default.store");
+            bool storeExist = File.Exists(fullPath);
+            System.Diagnostics.Debug.WriteLine(@fullPath);
+            if (!storeExist)
+            {
+                MessageBox.Show("Hello! To keep your identities safe, you need to set a general password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+            bool truePassword = false;
+            while(!truePassword)
+            {
+                FormRetrievePassword passget = new FormRetrievePassword("Please Enter Identity Store Password");
+                passget.ShowDialog();
+                try
+                {
+                    Globals.ThisAddIn.keyStore = new KeyStore("default.store", passget.password);
+                    truePassword = true;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Wrong Password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+            if (!storeExist) Globals.ThisAddIn.keyStore.Save();
+
+
 
         }
+        
 
         private void checkBoxSign_Click(object sender, RibbonControlEventArgs e)
         {
             
-            Config.SignMessages = checkBoxSign.Checked;
+            Globals.ThisAddIn.SignMessages = checkBoxSign.Checked;
             System.Diagnostics.Debug.WriteLine("Sign Checkbox changed to {0}", checkBoxSign.Checked);
         }
 
         private void checkBoxEncrypt_Click(object sender, RibbonControlEventArgs e)
         {
-            Config.EncryptMessages = checkBoxEncrypt.Checked;
+            Globals.ThisAddIn.EncryptMessages = checkBoxEncrypt.Checked;
             System.Diagnostics.Debug.WriteLine("Encrypt Checkbox changed to {0}", checkBoxEncrypt.Checked);
         }
+        
+
+
     }
 }

@@ -175,6 +175,12 @@
     <Compile Include="FormManageIdentity.Designer.cs">
       <DependentUpon>FormManageIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRetrievePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRetrievePassword.Designer.cs">
+      <DependentUpon>FormRetrievePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageIdentity.resx">
       <DependentUpon>FormManageIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetrievePassword.resx">
+      <DependentUpon>FormRetrievePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainRibbon.resx">
       <DependentUpon>MainRibbon.cs</DependentUpon>
@@ -211,7 +220,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Config.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -43,21 +43,16 @@
             this.label1 = this.Factory.CreateRibbonLabel();
             this.checkBoxEncrypt = this.Factory.CreateRibbonCheckBox();
             this.checkBoxSign = this.Factory.CreateRibbonCheckBox();
-            this.groupStatus = this.Factory.CreateRibbonGroup();
-            this.label2 = this.Factory.CreateRibbonLabel();
-            this.label3 = this.Factory.CreateRibbonLabel();
             this.mainTab.SuspendLayout();
             this.groupMe.SuspendLayout();
             this.groupOthers.SuspendLayout();
             this.groupOptions.SuspendLayout();
-            this.groupStatus.SuspendLayout();
             // 
             // mainTab
             // 
             this.mainTab.Groups.Add(this.groupMe);
             this.mainTab.Groups.Add(this.groupOthers);
             this.mainTab.Groups.Add(this.groupOptions);
-            this.mainTab.Groups.Add(this.groupStatus);
             this.mainTab.Label = "Simple PGP";
             this.mainTab.Name = "mainTab";
             // 
@@ -118,23 +113,6 @@
             this.checkBoxSign.Name = "checkBoxSign";
             this.checkBoxSign.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.checkBoxSign_Click);
             // 
-            // groupStatus
-            // 
-            this.groupStatus.Items.Add(this.label2);
-            this.groupStatus.Items.Add(this.label3);
-            this.groupStatus.Label = "Status";
-            this.groupStatus.Name = "groupStatus";
-            // 
-            // label2
-            // 
-            this.label2.Label = "You have %X% Identities.";
-            this.label2.Name = "label2";
-            // 
-            // label3
-            // 
-            this.label3.Label = "You know %Y% people.";
-            this.label3.Name = "label3";
-            // 
             // MainRibbon
             // 
             this.Name = "MainRibbon";
@@ -149,8 +127,6 @@
             this.groupOthers.PerformLayout();
             this.groupOptions.ResumeLayout(false);
             this.groupOptions.PerformLayout();
-            this.groupStatus.ResumeLayout(false);
-            this.groupStatus.PerformLayout();
 
         }
 
@@ -165,9 +141,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonLabel label1;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBoxEncrypt;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBoxSign;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupStatus;
-        internal Microsoft.Office.Tools.Ribbon.RibbonLabel label2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonLabel label3;
     }
 
     partial class ThisRibbonCollection
