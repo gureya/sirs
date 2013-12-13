@@ -20,7 +20,7 @@ namespace SimplePGP
 
         private void buttonConfigureMe_Click(object sender, RibbonControlEventArgs e)
         {
-            openStore();
+            ThisAddIn.openKeyStore();
           
             new FormManageIdentity("My").Show();
             
@@ -28,42 +28,11 @@ namespace SimplePGP
 
         private void buttonConfigureOthers_Click(object sender, RibbonControlEventArgs e)
         {
-            openStore();
+            ThisAddIn.openKeyStore();
             new FormManageIdentity("Others'").Show();
         }
 
-        public static void openStore()
-        {
-            if (Globals.ThisAddIn.keyStore != null) return;
-            String fullPath = Path.GetFullPath(@"default.store");
-            bool storeExist = File.Exists(fullPath);
-            System.Diagnostics.Debug.WriteLine(@fullPath);
-            if (!storeExist)
-            {
-                MessageBox.Show("Hello! To keep your identities safe, you need to set a general password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-
-            bool truePassword = false;
-            while(!truePassword)
-            {
-                FormRetrievePassword passget = new FormRetrievePassword("Please Enter Identity Store Password");
-                passget.ShowDialog();
-                try
-                {
-                    Globals.ThisAddIn.keyStore = new KeyStore("default.store", passget.password);
-                    truePassword = true;
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Wrong Password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-            }
-            if (!storeExist) Globals.ThisAddIn.keyStore.Save();
-
-
-
-        }
+      
         
 
         private void checkBoxSign_Click(object sender, RibbonControlEventArgs e)
@@ -76,6 +45,16 @@ namespace SimplePGP
         private void checkBoxEncrypt_Click(object sender, RibbonControlEventArgs e)
         {
             Globals.ThisAddIn.EncryptMessages = checkBoxEncrypt.Checked;
+            if(!Globals.ThisAddIn.EncryptMessages)
+            {
+                checkBoxSign.Checked = false;
+                Globals.ThisAddIn.SignMessages = false;
+                this.checkBoxSign.Enabled = false;
+            }
+            else
+            {
+                this.checkBoxSign.Enabled = true;
+            }
             System.Diagnostics.Debug.WriteLine("Encrypt Checkbox changed to {0}", checkBoxEncrypt.Checked);
         }
         

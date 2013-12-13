@@ -12,6 +12,7 @@ using Office = Microsoft.Office.Core;
 using DidiSoft.Pgp;
 using System.Text.RegularExpressions;
 
+
 namespace SimplePGP
 {
 
@@ -79,18 +80,36 @@ namespace SimplePGP
 
             foreach (ListViewItem item in this.listViewIdentities.SelectedItems)
             {
-                FormRetrievePassword passret = new FormRetrievePassword("Please Enter Identity Passphrase to Continue");
-                passret.ShowDialog(this);
+                if (String.Equals(who, MY))
+                {
+                    FormRetrievePassword passret = new FormRetrievePassword("Please Enter Identity Passphrase to Continue");
+                    passret.ShowDialog(this);
 
-                if (Globals.ThisAddIn.keyStore.GetKey(item.Text).CheckPassword(passret.password)) 
-                {
-                    Globals.ThisAddIn.keyStore.DeleteKeyPair(item.Text);
-                    System.Diagnostics.Debug.WriteLine("Deleting : " + item.Text);
-                    this.listViewIdentities.Items.Remove(item);
+                    if (Globals.ThisAddIn.keyStore.GetKey(item.Text).CheckPassword(passret.password))
+                    {
+                        Globals.ThisAddIn.keyStore.DeleteKeyPair(item.Text);
+                        System.Diagnostics.Debug.WriteLine("Deleting : " + item.Text);
+                        this.listViewIdentities.Items.Remove(item);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong Password!", "Cannot Delete", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
                 }
-                else
+                else //others
                 {
-                    MessageBox.Show("Wrong Password!", "Cannot Delete", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    FormRetrievePassword passret = new FormRetrievePassword("Please Enter Identity Store Password");
+                    passret.ShowDialog(this);
+                    if (String.Equals(Globals.ThisAddIn.keyStore.Password,passret.password))
+                    {
+                        Globals.ThisAddIn.keyStore.DeleteKeyPair(item.Text);
+                        System.Diagnostics.Debug.WriteLine("Deleting : " + item.Text);
+                        this.listViewIdentities.Items.Remove(item);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong Password!", "Cannot Delete", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
                 }
             }
             //listViewIdentities.Items.Clear();
