@@ -203,16 +203,19 @@ namespace SimplePGP
             }
 
 
+
                 FormRetrievePassword passget = new FormRetrievePassword("Please Enter Identity Store Password");
                 passget.ShowDialog();
                 try
                 {
                     Globals.ThisAddIn.keyStore = new KeyStore("default.store", passget.password);
+                 
                 }
                 catch (System.Exception e)
                 {
                     MessageBox.Show("Wrong Password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
+            
             
             if (!storeExist) Globals.ThisAddIn.keyStore.Save();
 
