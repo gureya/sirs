@@ -8,7 +8,6 @@ using Office = Microsoft.Office.Core;
 using DidiSoft.Pgp;
 using Microsoft.Office.Interop.Outlook;
 using System.Windows.Forms;
-using DidiSoft.Pgp;
 using System.IO;
 
 namespace SimplePGP
@@ -48,14 +47,16 @@ namespace SimplePGP
                 else // not composing
                 {
                     PGPLib pgp = new PGPLib();
-                    openKeyStore();
-
                     Outlook.Folder myFolder = Application.ActiveExplorer().CurrentFolder as Outlook.Folder;
                     Outlook.Account currentAccount = GetAccountForFolder(myFolder);
                     System.Diagnostics.Debug.WriteLine(currentAccount.DisplayName);
 
                     bool verification = false;
-
+                    openKeyStore();
+                    if (keyStore == null)
+                    {
+                        return;
+                    }
                     if (keyStore.ContainsPrivateKey(currentAccount.DisplayName) && mailItem.Body.StartsWith("-----BEGIN PGP MESSAGE-----"))
                     {
                             FormRetrievePassword passret = new FormRetrievePassword("Enter Passphrase for " + currentAccount.DisplayName);
@@ -109,10 +110,16 @@ namespace SimplePGP
             
             Outlook.MailItem mailItem = item as Outlook.MailItem;
             Outlook.Inspector curr_inspector = Application.ActiveInspector();
-
-            openKeyStore();
+ 
             if (EncryptMessages && !SignMessages)
             {
+                
+            openKeyStore();
+            if (keyStore == null)
+            {
+                status = true;
+                return;
+            }
                 System.Diagnostics.Debug.WriteLine("Encryption to do!");
                 foreach (Recipient destination in mailItem.Recipients)
                 {
@@ -121,6 +128,8 @@ namespace SimplePGP
                     {
                         perDestination.Body = pgp.EncryptString(mailItem.Body, keyStore, destination.Address);
                     }
+
+
                     perDestination.Send();
                     status = true;
                     try { curr_inspector.Close(OlInspectorClose.olDiscard); }
@@ -130,6 +139,13 @@ namespace SimplePGP
             }
             else if(EncryptMessages && SignMessages)
             {
+                openKeyStore();
+                if (keyStore == null)
+                {
+                    status = true;
+                    return;
+                }
+
                 System.Diagnostics.Debug.WriteLine("Encryption to do!");
                 foreach (Recipient destination in mailItem.Recipients)
                 {
@@ -186,21 +202,18 @@ namespace SimplePGP
 
             }
 
-            bool truePassword = false;
-            while (!truePassword)
-            {
+
                 FormRetrievePassword passget = new FormRetrievePassword("Please Enter Identity Store Password");
                 passget.ShowDialog();
                 try
                 {
                     Globals.ThisAddIn.keyStore = new KeyStore("default.store", passget.password);
-                    truePassword = true;
                 }
                 catch (System.Exception e)
                 {
                     MessageBox.Show("Wrong Password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
-            }
+            
             if (!storeExist) Globals.ThisAddIn.keyStore.Save();
 
 

@@ -36,13 +36,13 @@
         {
             this.mainTab = this.Factory.CreateRibbonTab();
             this.groupMe = this.Factory.CreateRibbonGroup();
-            this.buttonConfigureMe = this.Factory.CreateRibbonButton();
             this.groupOthers = this.Factory.CreateRibbonGroup();
-            this.buttonConfigureOthers = this.Factory.CreateRibbonButton();
             this.groupOptions = this.Factory.CreateRibbonGroup();
             this.label1 = this.Factory.CreateRibbonLabel();
             this.checkBoxEncrypt = this.Factory.CreateRibbonCheckBox();
             this.checkBoxSign = this.Factory.CreateRibbonCheckBox();
+            this.buttonConfigureMe = this.Factory.CreateRibbonButton();
+            this.buttonConfigureOthers = this.Factory.CreateRibbonButton();
             this.mainTab.SuspendLayout();
             this.groupMe.SuspendLayout();
             this.groupOthers.SuspendLayout();
@@ -62,31 +62,11 @@
             this.groupMe.Label = "Me";
             this.groupMe.Name = "groupMe";
             // 
-            // buttonConfigureMe
-            // 
-            this.buttonConfigureMe.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.buttonConfigureMe.Description = "Configure your identities...";
-            this.buttonConfigureMe.Label = "My Identities";
-            this.buttonConfigureMe.Name = "buttonConfigureMe";
-            this.buttonConfigureMe.OfficeImageId = "LastModifiedBy";
-            this.buttonConfigureMe.ShowImage = true;
-            this.buttonConfigureMe.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonConfigureMe_Click);
-            // 
             // groupOthers
             // 
             this.groupOthers.Items.Add(this.buttonConfigureOthers);
             this.groupOthers.Label = "Others";
             this.groupOthers.Name = "groupOthers";
-            // 
-            // buttonConfigureOthers
-            // 
-            this.buttonConfigureOthers.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.buttonConfigureOthers.Description = "Manage others\' identities...";
-            this.buttonConfigureOthers.Label = "Others\' Identities";
-            this.buttonConfigureOthers.Name = "buttonConfigureOthers";
-            this.buttonConfigureOthers.OfficeImageId = "SocialAccountSettings";
-            this.buttonConfigureOthers.ShowImage = true;
-            this.buttonConfigureOthers.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonConfigureOthers_Click);
             // 
             // groupOptions
             // 
@@ -112,6 +92,26 @@
             this.checkBoxSign.Label = "Sign My Messages";
             this.checkBoxSign.Name = "checkBoxSign";
             this.checkBoxSign.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.checkBoxSign_Click);
+            // 
+            // buttonConfigureMe
+            // 
+            this.buttonConfigureMe.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonConfigureMe.Description = "Configure your identities...";
+            this.buttonConfigureMe.Label = "My Identities";
+            this.buttonConfigureMe.Name = "buttonConfigureMe";
+            this.buttonConfigureMe.OfficeImageId = "LastModifiedBy";
+            this.buttonConfigureMe.ShowImage = true;
+            this.buttonConfigureMe.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonConfigureMe_Click);
+            // 
+            // buttonConfigureOthers
+            // 
+            this.buttonConfigureOthers.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonConfigureOthers.Description = "Manage others\' identities...";
+            this.buttonConfigureOthers.Label = "Others\' Identities";
+            this.buttonConfigureOthers.Name = "buttonConfigureOthers";
+            this.buttonConfigureOthers.OfficeImageId = "SocialAccountSettings";
+            this.buttonConfigureOthers.ShowImage = true;
+            this.buttonConfigureOthers.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonConfigureOthers_Click);
             // 
             // MainRibbon
             // 

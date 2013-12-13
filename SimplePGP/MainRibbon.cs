@@ -21,15 +21,16 @@ namespace SimplePGP
         private void buttonConfigureMe_Click(object sender, RibbonControlEventArgs e)
         {
             ThisAddIn.openKeyStore();
-          
-            new FormManageIdentity("My").Show();
+            if (!(Globals.ThisAddIn.keyStore == null))
+                new FormManageIdentity("My").Show();
             
         }
 
         private void buttonConfigureOthers_Click(object sender, RibbonControlEventArgs e)
         {
             ThisAddIn.openKeyStore();
-            new FormManageIdentity("Others'").Show();
+            if (!(Globals.ThisAddIn.keyStore == null))
+                new FormManageIdentity("Others'").Show();
         }
 
       
