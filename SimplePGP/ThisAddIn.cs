@@ -56,11 +56,8 @@ namespace SimplePGP
 
                     bool verification = false;
 
-                    if(keyStore.ContainsPrivateKey(currentAccount.DisplayName))
+                    if (keyStore.ContainsPrivateKey(currentAccount.DisplayName) && mailItem.Body.StartsWith("-----BEGIN PGP MESSAGE-----"))
                     {
-                        bool success = false;
-                        while (!success)
-                        {
                             FormRetrievePassword passret = new FormRetrievePassword("Enter Passphrase for " + currentAccount.DisplayName);
                             passret.ShowDialog();
                             try
@@ -68,16 +65,16 @@ namespace SimplePGP
                                 String result;
                                 result = pgp.DecryptString(mailItem.Body, keyStore, passret.password);
                                 verification = pgp.DecryptAndVerifyString(mailItem.Body, keyStore, passret.password, out result);
-                                mailItem.Body = result;
+                                if (verification) mailItem.Body = "----- SENDER IDENTITY VERIFIED -----\n"; else mailItem.Body = "";
+                                mailItem.Body += result;
                                 System.Diagnostics.Debug.WriteLine("Verification : " + verification);
-                                success = true;
 
                             }
                             catch (System.Exception e)
                             {
                                 MessageBox.Show("Wrong Password!", "Password is Required", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
-                        }
+                        
                     }
                 }
 
