@@ -1,4 +1,0 @@
-\beamer@endinputifotherversion {3.10pt}
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Implementation}{7}{0}{2}
-\beamer@sectionintoc {3}{Conclusion}{12}{0}{3}
