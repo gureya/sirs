@@ -124,14 +124,14 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 \item PGP, GnuPG, OpenPGP
 \item Used for: 
 \begin{itemize}
-\item Digital Signature (DSS/SHA or RSA/SHA)
-\item Message Encryption(CAST-128, IDEA, 3-DES with RSA)
-\item Compression 
-\item Compatibility (Radix-64 conversion)
+\item Digital Signature (SHA1,MD5,SHA256) 
+\item Message Encryption (AES,CAST; RSA)
+\item Compression (ZIP) 
+\item Compatibility (Radix-64)
 \end{itemize}
-\item 1998, IETF WG, RFC 4880
-\item interoperability
-\item legal issues
+\item RFC 4880
+\item Interoperability
+\item Legal issues
 \end{itemize}
 \end{frame}
 
@@ -150,28 +150,19 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 
 \begin{frame}
 \frametitle{How it works}
-\tikzstyle{format} = [draw, thin, fill=blue!20]
-\tikzstyle{medium} = [ellipse, draw, thin, fill=green!20, minimum height=2.5em]
-
 \begin{figure}
 \includegraphics[width=\textwidth]{PgpMsgGen}
 \end{figure}
 \end{frame}
 
-
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{How it works}
-\tikzstyle{format} = [draw, thin, fill=blue!20]
-\tikzstyle{medium} = [ellipse, draw, thin, fill=green!20, minimum height=2.5em]
-
 \begin{figure}
 \includegraphics[scale=0.4]{PgpMsgFormat}
 \end{figure}
 \end{frame}
-
-
 
 %------------------------------------------------
 \section{Implementation}
@@ -180,16 +171,24 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 
 \begin{frame}
 \frametitle{Implementation}
-\begin{block}{Attempts}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
+\begin{block}{Initial Design}
+Microsoft CryptoAPI + Bouncy Castle API
+%---TODO: insert relevant diagram
 \end{block}
+\begin{block}{Current Implementation}
+\begin{itemize}
+\item Didisoft's .NET API
+\item Default choices: 
 
-\begin{block}{Didisoft C# library}
-Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
-\end{block}
+\begin{itemize}
+\item Key Size: 2048 bits \cite{p1}
+\item Asymmetric Algorithm: RSA
+\item Symmetric Cipher: AES-128/CAST5
+\item Hash function: SHA1, MD5, SHA256
+\item Compression: ZIP
+\end{itemize}
 
-\begin{block}{Interface}
-Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum, ipsum neque consectetur orci, sed blandit justo nisi ac lacus.
+\end{itemize}
 \end{block}
 \end{frame}
 
@@ -199,17 +198,6 @@ Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenati
 \frametitle{Implementation}
 \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
 
-\column{.45\textwidth} % Left column and width
-\textbf{Heading}
-\begin{enumerate}
-\item Statement
-\item Explanation
-\item Example
-\end{enumerate}
-
-\column{.5\textwidth} % Right column and width
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-
 \end{columns}
 \end{frame}
 
@@ -217,62 +205,42 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ul
 
 \begin{frame}
 \frametitle{Table}
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
 \frametitle{Verbatim}
-\begin{example}[Theorem Slide Code]
-\begin{verbatim}
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}\end{verbatim}
-\end{example}
 \end{frame}
 
 %------------------------------------------------
 
 \section{Conclusion}
 \begin{frame}
-\frametitle{Figure}
-Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{test}
-%\end{figure}
+\frametitle{Lessons learned}
+\begin{itemize}
+\item Poorly documented APIs are \emph{not good}
+\item Existing Didisoft limitations \cite{dd}
+\end{itemize}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
-
-This statement requires citation \cite{p1}.
+\frametitle{Future work}
+\begin{itemize}
+\item PGP/MIME support (attachments)
+\item ECDSA and ECDH?
+\item Advanced users configuration
+\item Keccak (SHA3) \emph{vs.} MD5 or SHA1 (vulnerable \cite{sh})
+\item More configurable
+\end{itemize}
 \end{frame}
 
 %------------------------------------------------
@@ -280,10 +248,20 @@ This statement requires citation \cite{p1}.
 \begin{frame}
 \frametitle{References}
 \footnotesize{
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Smith, 2012]{p1} John Smith (2012)
-\newblock Title of the publication
-\newblock \emph{Journal Name} 12(3), 45 -- 678.
+\begin{thebibliography}{99} 
+
+\bibitem[1]{p1} Elaine Barker, Allen Roginsky (2011)
+\newblock Transitions: Recommendation for Transitioning the Use of Cryptographic Algorithms and Key Lengths
+\newblock \emph{NIST Special Publication 800-131A}
+
+\bibitem[2]{dd} www.didisoft.com
+\newblock OpenPGP Email messages
+\newblock \emph{http://www.didisoft.com/net-openpgp/examples/openpgp-email-messages/}
+
+\bibitem[3]{sh} Marc Stevens
+\newblock Framework for MD5 \& SHA-1 Differential Path Construction and Chosen-Prefix Collisions for MD5
+\newblock \emph{https://code.google.com/p/hashclash/}
+
 \end{thebibliography}
 }
 \end{frame}
