@@ -122,12 +122,12 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 \frametitle{OpenPGP}
 \begin{itemize}
 \item PGP, GnuPG, OpenPGP
-\item Used for: 
+\item Services offered: 
 \begin{itemize}
-\item Digital Signature (SHA1,MD5,SHA256) 
-\item Message Encryption (AES,CAST; RSA)
-\item Compression (ZIP) 
-\item Compatibility (Radix-64)
+\item Digital Signature
+\item Message Encryption
+\item Compression
+\item Compatibility
 \end{itemize}
 \item RFC 4880
 \item Interoperability
@@ -166,16 +166,30 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 
 %------------------------------------------------
 \section{Implementation}
-%------------------------------------------------
-
 
 \begin{frame}
-\frametitle{Implementation}
-\begin{block}{Initial Design}
-Microsoft CryptoAPI + Bouncy Castle API
-%---TODO: insert relevant diagram
-\end{block}
-\begin{block}{Current Implementation}
+\frametitle{Implementation - 1\textsuperscript{st} Iteration: Bouncy Castle API}
+\begin{itemize}
+\item Microsoft CryptoServiceProvider
+\item SQLite for key information
+\item Bouncy Castle Open Source Cryptographic functions
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Design}
+
+\begin{figure}
+\includegraphics[scale=0.4]{Diagram1}
+\end{figure}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Implementation - 2\textsuperscript{nd} Iteration: Didisoft API}
 \begin{itemize}
 \item Didisoft's .NET API
 \item Default choices: 
@@ -187,17 +201,33 @@ Microsoft CryptoAPI + Bouncy Castle API
 \item Hash function: SHA1, MD5, SHA256
 \item Compression: ZIP
 \end{itemize}
-
 \end{itemize}
-\end{block}
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Implementation}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\frametitle{Implementation - RSA vs. DSA2}
+\begin{columns}[onlytextwidth]
+\begin{column}{0.45\textwidth} % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\centering
+\textbf{RSA}
+\begin{itemize}
+\item default in GPG \cite{wk}
+\item More wide-spread
+\item Faster signature verification
+\end{itemize}
+\end{column}
 
+\begin{column}{0.45\textwidth} % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\centering
+\textbf{DSA2}
+\begin{itemize}
+\item Smaller signatures
+\item Slightly faster signature generation
+\end{itemize}
+\end{column}
 \end{columns}
 \end{frame}
 
@@ -227,6 +257,7 @@ Microsoft CryptoAPI + Bouncy Castle API
 \begin{itemize}
 \item Poorly documented APIs are \emph{not good}
 \item Existing Didisoft limitations \cite{dd}
+\item Implementing OpenPGP is \emph{hard}
 \end{itemize}
 \end{frame}
 
@@ -261,6 +292,10 @@ Microsoft CryptoAPI + Bouncy Castle API
 \bibitem[3]{sh} Marc Stevens
 \newblock Framework for MD5 \& SHA-1 Differential Path Construction and Chosen-Prefix Collisions for MD5
 \newblock \emph{https://code.google.com/p/hashclash/}
+
+\bibitem[4]{wk} Nathan Willis(June 17, 2009)
+\newblock Dealing with weakness in SHA-1
+\newblock \emph{http://lwn.net/Articles/337745/}
 
 \end{thebibliography}
 }
