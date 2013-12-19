@@ -136,32 +136,36 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 \end{frame}
 
 %------------------------------------------------
-\begin{frame}
-\frametitle{How it works}
-\begin{enumerate}
-\item 4 key types: passphrase, session-key, private key, public key
-\item Public and private key rings
-\item Passphrase encrypts private key ring
-\item Every user can have a public-private key pair
-\end{enumerate}
-\end{frame}
-
+% Commented the slide out/ the diagram should suffice
+%\begin{frame}
+%\frametitle{How it works}
+%\begin{enumerate}
+%\item 4 key types: passphrase, session-key, private key, public key
+%\item Public and private key rings
+%\item Passphrase encrypts private key ring
+%\item Every user can have a public-private key pair
+%\end{enumerate}
+%\end{frame}
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{How it works}
+
 \begin{figure}
 \includegraphics[width=\textwidth]{PgpMsgGen}
 \end{figure}
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{How it works}
+
 \begin{figure}
 \includegraphics[scale=0.4]{PgpMsgFormat}
 \end{figure}
+
 \end{frame}
 
 %------------------------------------------------
@@ -169,11 +173,13 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 
 \begin{frame}
 \frametitle{Implementation - 1\textsuperscript{st} Iteration: Bouncy Castle API}
+
 \begin{itemize}
 \item Microsoft CryptoServiceProvider
-\item SQLite for key information
+\item SQLite for key/contacts information
 \item Bouncy Castle Open Source Cryptographic functions
 \end{itemize}
+
 \end{frame}
 %------------------------------------------------
 
@@ -190,10 +196,10 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 
 \begin{frame}
 \frametitle{Implementation - 2\textsuperscript{nd} Iteration: Didisoft API}
+
 \begin{itemize}
 \item Didisoft's .NET API
 \item Default choices: 
-
 \begin{itemize}
 \item Key Size: 2048 bits \cite{p1}
 \item Asymmetric Algorithm: RSA
@@ -208,55 +214,39 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Implementation - RSA vs. DSA2}
+\frametitle{Implementation - RSA vs. DSA2/ElGamal}
 \begin{columns}[onlytextwidth]
 \begin{column}{0.45\textwidth} % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
 \centering
 \textbf{RSA}
 \begin{itemize}
-\item default in GPG \cite{wk}
+\item Integer Factorisation
+\item Default in GPG \cite{wk}
 \item More wide-spread
 \item Faster signature verification
+\item Longer signatures
 \end{itemize}
 \end{column}
 
 \begin{column}{0.45\textwidth} % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
 \centering
-\textbf{DSA2}
+\textbf{DSA2 with ElGamal}
 \begin{itemize}
+\item Discrete Logarithm Problem
 \item Smaller signatures
 \item Slightly faster signature generation
+\item Shorter key length
 \end{itemize}
 \end{column}
 \end{columns}
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Table}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Theorem}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Verbatim}
-\end{frame}
-
-%------------------------------------------------
 
 \section{Conclusion}
 \begin{frame}
 \frametitle{Lessons learned}
 \begin{itemize}
 \item Poorly documented APIs are \emph{not good}
-\item Existing Didisoft limitations \cite{dd}
+\item Didisoft API limitations \cite{dd}
 \item Implementing OpenPGP is \emph{hard}
 \end{itemize}
 \end{frame}
@@ -264,7 +254,7 @@ Instituto Superior Tecnico \\ % Your institution for the title page
 %------------------------------------------------
 
 \begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Future work}
+\frametitle{Future work?}
 \begin{itemize}
 \item PGP/MIME support (attachments)
 \item ECDSA and ECDH?
